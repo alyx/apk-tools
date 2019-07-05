@@ -58,7 +58,12 @@
  * Error messages for resolver errors
  */
 static struct fetcherr netdb_errlist[] = {
+#if defined __linux || defined __linux__
+  /* Linux may still return EAI_NODATA; on BSD this has been deprecated
+   *  and replaced with EAI_NONAME.
+   */
 	{ EAI_NODATA,	FETCH_RESOLV,	"Host not found" },
+#endif
 	{ EAI_AGAIN,	FETCH_TEMP,	"Transient resolver failure" },
 	{ EAI_FAIL,	FETCH_RESOLV,	"Non-recoverable resolver failure" },
 	{ EAI_NONAME,	FETCH_RESOLV,	"No address record" },
@@ -654,7 +659,7 @@ fetch_read(conn_t *conn, char *buf, size_t len)
 		}
 		if (rlen >= 0)
 			break;
-	
+
 		if (errno != EINTR || !fetchRestartCalls)
 			return (-1);
 	}
