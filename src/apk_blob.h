@@ -109,8 +109,8 @@ static inline char *apk_blob_chr(apk_blob_t b, unsigned char ch)
 	return memchr(b.ptr, ch, b.len);
 }
 
-static inline const int apk_checksum_compare(const struct apk_checksum *a,
-					     const struct apk_checksum *b)
+static inline int apk_checksum_compare(const struct apk_checksum *a,
+					const struct apk_checksum *b)
 {
 	return apk_blob_compare(APK_BLOB_PTR_LEN((char *) a->data, a->type),
 				APK_BLOB_PTR_LEN((char *) b->data, b->type));
