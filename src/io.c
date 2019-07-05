@@ -20,11 +20,11 @@
 #include <sys/mman.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
-#include <sys/xattr.h>
 #include <sys/param.h>
 #include <pwd.h>
 #include <grp.h>
 
+#include "apk_platform.h"
 #include "apk_defines.h"
 #include "apk_io.h"
 #include "apk_hash.h"
